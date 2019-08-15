@@ -9,12 +9,6 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(<Loginscreen />, document.getElementById('root'));
 
 
-// Default
-//ReactDOM.render(<App />, document.getElementById('root2'));
-
-
-
-
 
 
 // If you want your app to work offline and load faster, you can change

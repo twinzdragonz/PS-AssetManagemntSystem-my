@@ -5,6 +5,8 @@ import Login from './login';
 import Register from './register';
 
 
+
+
 class Loginscreen extends Component {
   constructor(props){
     super(props);
@@ -56,8 +58,10 @@ class Loginscreen extends Component {
   }
 
 
+
   render() {
     return (
+
       <div className="loginscreen">
         {this.state.loginscreen}
         <div>
@@ -69,6 +73,9 @@ class Loginscreen extends Component {
           </MuiThemeProvider>
         </div>
       </div>
+
+    
+    
     );
   }
 }
