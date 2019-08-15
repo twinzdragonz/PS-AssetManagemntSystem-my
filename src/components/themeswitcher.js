@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Alert } from 'bootstrap-4-react';
 
 class ThemeSwitcher extends Component {
 
@@ -20,7 +21,6 @@ class ThemeSwitcher extends Component {
     const themeClass = theme ? theme.toLowerCase() : 'secondary';
     
     return (
-
 
       <div className="d-flex flex-wrap justify-content-center position-absolute w-100 h-100 align-items-center align-content-center">
       

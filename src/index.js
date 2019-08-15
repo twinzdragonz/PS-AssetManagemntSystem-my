@@ -1,16 +1,12 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import $ from 'jquery';
-import Popper from 'popper.js';
 
-import ThemeSwitcher from './components/themeswitcher.js';
+import Loginscreen from './loginscreen.js';
 
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<ThemeSwitcher />, document.getElementById('root'));
+ReactDOM.render(<Loginscreen />, document.getElementById('root'));
 
 
 // Default
