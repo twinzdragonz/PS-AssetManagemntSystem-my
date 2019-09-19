@@ -1,31 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Alert } from 'bootstrap-4-react';
+﻿import React, { Component } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import "./App.css";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
+import Blank from "./components/Blank";
+import Grid from "./components/Grid";
+import List from "./components/List";
+import Master_Detail from "./components/Master_Detail";
 
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-
-
-        </a>
-      </header>
-    </div>
-  );
+//TODO Web Template Studio: Add routes for your new pages here.
+class App extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <NavBar />
+        <Switch>
+          <Redirect exact path = "/" to = "/Blank" />
+          <Route path = "/Blank" component = { Blank } />
+          <Route path = "/Grid" component = { Grid } />
+          <Route path = "/List" component = { List } />
+          <Route path = "/Master_Detail" component = { Master_Detail } />
+        </Switch>
+        <Footer />
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
