@@ -16,7 +16,7 @@ class App extends Component {
       <React.Fragment>
         <NavBar />
         <Switch>
-          <Redirect exact path = "/" to = "/Blank" />
+          <Redirect exact path = "/" to = "/Grid" />
           <Route path = "/Blank" component = { Blank } />
           <Route path = "/Grid" component = { Grid } />
           <Route path = "/List" component = { List } />
