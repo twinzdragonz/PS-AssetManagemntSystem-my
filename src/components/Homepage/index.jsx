@@ -1,12 +1,14 @@
 ﻿import React, { Component } from "react";
 import classnames from "classnames";
 import GridComponent from "./GridComponent";
+import Video from "./video";
 import WarningMessage from "../WarningMessage";
 import GreyBox from "../../images/GreyBox.svg";
 import styles from "./grid.module.css";
 import CONSTANTS from "../../constants";
 
-export default class Grid extends Component {
+
+export default class Homepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,8 +54,9 @@ export default class Grid extends Component {
     return (
       <main id="mainContent">
         <div className={classnames("text-center", styles.header)}>
-          <h1>Policy Street Agent Portal</h1>
-          <p>Where Consumer and Agents meet satisfaction</p>
+        
+        <h1 className={styles.white}>Policy Street Agent Portal</h1>
+        <p className={styles.white}>Where Consumer and Agents meet satisfaction</p>        
           <a
             href="https://policystreet.com/"
             className="btn btn-primary my-2"
@@ -61,10 +64,11 @@ export default class Grid extends Component {
             Link to our Official Website
           </a>
         </div>
+      {/* just want to test how the video play <Video/> */}
 
         <div className="container">
           <div className="row justify-content-center py-5">
-            <h1>Making Insurance Simple</h1>
+            <h1>Our Partners</h1>
           </div>
 
           <div className="row justify-content-around text-center pb-5">
@@ -72,7 +76,7 @@ export default class Grid extends Component {
               <GridComponent
                 key={textAssets.id}
                 header={textAssets.title}
-                description={textAssets.shortDescription}
+
                 image={GreyBox}
               />
             ))}

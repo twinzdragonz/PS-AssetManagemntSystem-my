@@ -1,5 +1,6 @@
 ﻿const shortLoremIpsum = `Lorem id sint aliqua tempor tempor sit. Ad dolor dolor ut nulla mollit dolore non eiusmod Lorem tempor nisi cillum.`;
 const sampleData = {};
+const shortCompanyData = 'Company describe here';
 const longLoremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
   tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus
   non enim praesent elementum facilisis leo vel. Risus at ultrices mi
@@ -19,7 +20,7 @@ sampleData.textAssets = [
   {
     shortDescription: shortLoremIpsum,
     longDescription: longLoremIpsum,
-    title: "Company A",
+    title: "AIA",
     status: "Closed",
     shipTo: "Francisco Pérez-Olaeta",
     orderTotal: 2490.0,
@@ -29,7 +30,7 @@ sampleData.textAssets = [
   {
     shortDescription: shortLoremIpsum,
     longDescription: longLoremIpsum,
-    title: "Company B",
+    title: "AIG",
     status: "Closed",
     shipTo: "Soo Jung Lee",
     orderTotal: 1760.0,
@@ -39,7 +40,7 @@ sampleData.textAssets = [
   {
     shortDescription: shortLoremIpsum,
     longDescription: longLoremIpsum,
-    title: "Company C",
+    title: "Allianz",
     status: "Shipped",
     shipTo: "Run Liu",
     orderTotal: 665.0,
@@ -113,11 +114,11 @@ sampleData.listID = 3;
 
 sampleData.listTextAssets = [
   {
-    text: shortLoremIpsum,
+     text: shortCompanyData,
     _id: 1
   },
   {
-    text: shortLoremIpsum,
+    text: shortCompanyData,
     _id: 2
   }
 ];

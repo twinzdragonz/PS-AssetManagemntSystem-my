@@ -5,7 +5,10 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
 import Blank from "./components/Blank";
-import Grid from "./components/Grid";
+
+import Homepage from "./components/Homepage";
+
+
 import List from "./components/List";
 import Master_Detail from "./components/Master_Detail";
 
@@ -16,9 +19,9 @@ class App extends Component {
       <React.Fragment>
         <NavBar />
         <Switch>
-          <Redirect exact path = "/" to = "/Grid" />
+          <Redirect exact path = "/" to = "/Homepage" />
+          <Route path = "/Homepage" component = { Homepage } />
           <Route path = "/Blank" component = { Blank } />
-          <Route path = "/Grid" component = { Grid } />
           <Route path = "/List" component = { List } />
           <Route path = "/Master_Detail" component = { Master_Detail } />
         </Switch>

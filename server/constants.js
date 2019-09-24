@@ -6,7 +6,7 @@ CONSTANTS.ENDPOINT.MASTERDETAIL = "/masterdetail";
 
 CONSTANTS.ENDPOINT.LIST = "/list";
 
-CONSTANTS.ENDPOINT.GRID = "/grid";
+CONSTANTS.ENDPOINT.GRID = "/Homepage";
 
 
 module.exports = CONSTANTS;
