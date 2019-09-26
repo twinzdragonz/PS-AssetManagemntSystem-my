@@ -20,23 +20,45 @@ export default class Homepage extends Component {
     this.handleWarningClose = this.handleWarningClose.bind(this);
   }
 
-  // Get the text sample data from the back end
-  componentDidMount() {
-    fetch(CONSTANTS.ENDPOINT.GRID)
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response.json();
+//  // Get the text sample data from the back end
+//   componentDidMount() {
+//     fetch(CONSTANTS.ENDPOINT.GRID)
+//       .then(response => {
+//         if (!response.ok) {
+//           throw Error(response.statusText);
+//         }
+//         return response.json();
+//       })
+//       .then(result => this.setState({ gridTextAssets: result }))
+//       .catch(error =>
+//         this.setState({
+//           WarningMessageOpen: true,
+//           WarningMessageText: `Request to get grid text failed: ${error}`
+//         })
+//       );
+//   }
+
+    componentDidMount(){
+        fetch(CONSTANTS.ENDPOINT.URL + CONSTANTS.SYSTEM.CALL,{
+        method: 'POST',
+        headers :{'Content-Type': 'application/json'},
+        body : JSON.stringify({ system_request : 'company_list'})
       })
-      .then(result => this.setState({ gridTextAssets: result }))
-      .catch(error =>
-        this.setState({
-          WarningMessageOpen: true,
-          WarningMessageText: `Request to get grid text failed: ${error}`
+        .then(response => {
+         if (!response.ok) {
+   
+           throw Error(response.statusText);
+          }
+       return response.json();
         })
-      );
-  }
+      .then(results => this.setState({gridTextAssets:results}))
+      .catch(error =>
+         this.setState({
+           WarningMessageOpen : true,
+           WarningMessageText: `Request to get grid text failed: ${error}`
+          })
+        )
+    }
 
   handleWarningClose() {
     this.setState({
@@ -54,9 +76,9 @@ export default class Homepage extends Component {
     return (
       <main id="mainContent">
         <div className={classnames("text-center", styles.header)}>
-        
-        <h1 className={styles.white}>Policy Street Agent Portal</h1>
-        <p className={styles.white}>Where Consumer and Agents meet satisfaction</p>        
+
+        <h1 className={styles.white}>Policy Street Agent Portal </h1>
+        <p className={styles.white}>Where Consumer and Agents meet satisfaction</p>
           <a
             href="https://policystreet.com/"
             className="btn btn-primary my-2"
@@ -76,7 +98,6 @@ export default class Homepage extends Component {
               <GridComponent
                 key={textAssets.id}
                 header={textAssets.title}
-
                 image={GreyBox}
               />
             ))}

@@ -1,5 +1,8 @@
 ﻿const CONSTANTS = {};
 CONSTANTS.ENDPOINT = {};
+CONSTANTS.API = {};
+CONSTANTS.SYSTEM = {};
+
 
 CONSTANTS.PORT = process.env.PORT || "3001";
 CONSTANTS.ENDPOINT.MASTERDETAIL = "/masterdetail";
@@ -8,5 +11,12 @@ CONSTANTS.ENDPOINT.LIST = "/list";
 
 CONSTANTS.ENDPOINT.GRID = "/Homepage";
 
+// Live production URL
+CONSTANTS.ENDPOINT.URL = "http://54.251.165.232:80";
+
+CONSTANTS.API.LOGIN = "/login";
+
+// SYSTEM CALL NOT FOR USER CALLING.
+CONSTANTS.SYSTEM.CALL = "/ams_system";
 
 module.exports = CONSTANTS;
