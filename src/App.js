@@ -3,14 +3,11 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-
 import Blank from "./components/Blank";
-
 import Homepage from "./components/Homepage";
-
-
 import List from "./components/List";
 import Master_Detail from "./components/Master_Detail";
+import Login from "./components/Login";
 
 //TODO Web Template Studio: Add routes for your new pages here.
 class App extends Component {
@@ -24,6 +21,7 @@ class App extends Component {
           <Route path = "/Blank" component = { Blank } />
           <Route path = "/List" component = { List } />
           <Route path = "/Master_Detail" component = { Master_Detail } />
+          <Route path = "/Login" component = { Login } />
         </Switch>
         <Footer />
       </React.Fragment>

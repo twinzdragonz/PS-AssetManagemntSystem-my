@@ -7,7 +7,6 @@ import GreyBox from "../../images/GreyBox.svg";
 import styles from "./grid.module.css";
 import CONSTANTS from "../../constants";
 
-
 export default class Homepage extends Component {
   constructor(props) {
     super(props);
@@ -19,24 +18,6 @@ export default class Homepage extends Component {
 
     this.handleWarningClose = this.handleWarningClose.bind(this);
   }
-
-//  // Get the text sample data from the back end
-//   componentDidMount() {
-//     fetch(CONSTANTS.ENDPOINT.GRID)
-//       .then(response => {
-//         if (!response.ok) {
-//           throw Error(response.statusText);
-//         }
-//         return response.json();
-//       })
-//       .then(result => this.setState({ gridTextAssets: result }))
-//       .catch(error =>
-//         this.setState({
-//           WarningMessageOpen: true,
-//           WarningMessageText: `Request to get grid text failed: ${error}`
-//         })
-//       );
-//   }
 
     componentDidMount(){
         fetch(CONSTANTS.ENDPOINT.URL + CONSTANTS.SYSTEM.CALL,{
@@ -76,16 +57,14 @@ export default class Homepage extends Component {
     return (
       <main id="mainContent">
         <div className={classnames("text-center", styles.header)}>
-
+          
         <h1 className={styles.white}>Policy Street Agent Portal </h1>
         <p className={styles.white}>Where Consumer and Agents meet satisfaction</p>
-          <a
-            href="https://policystreet.com/"
-            className="btn btn-primary my-2"
-          >
+          <a href="https://policystreet.com/" className="btn btn-primary my-2">
             Link to our Official Website
           </a>
         </div>
+
       {/* just want to test how the video play <Video/> */}
 
         <div className="container">
@@ -103,11 +82,13 @@ export default class Homepage extends Component {
             ))}
           </div>
         </div>
+
         <WarningMessage
           open={WarningMessageOpen}
           text={WarningMessageText}
           onWarningClose={this.handleWarningClose}
         />
+
       </main>
     );
   }

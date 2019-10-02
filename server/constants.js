@@ -14,9 +14,9 @@ CONSTANTS.ENDPOINT.GRID = "/Homepage";
 // Live production URL
 CONSTANTS.ENDPOINT.URL = "http://54.251.165.232:80";
 
-CONSTANTS.API.LOGIN = "/login";
+CONSTANTS.API.LOGIN = "api/login";
 
 // SYSTEM CALL NOT FOR USER CALLING.
-CONSTANTS.SYSTEM.CALL = "/ams_system";
+CONSTANTS.SYSTEM.CALL = "/api/ams_system";
 
 module.exports = CONSTANTS;

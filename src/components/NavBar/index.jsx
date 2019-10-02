@@ -1,6 +1,10 @@
 ﻿import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./navbar.module.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
+import Login from '../Login/index';
+
 
 //TODO Web Template Studio: Add a new link in the NavBar for your page here.
 // A skip link is included as an accessibility best practice. For more information visit https://www.w3.org/WAI/WCAG21/Techniques/general/G1.
@@ -19,14 +23,27 @@ export default function NavBar() {
           <Link className="nav-item nav-link active" to="Grid">
             Getting Started
           </Link>
+
           <Link className="nav-item nav-link active" to="List">
             About
           </Link>
-          <Link className="nav-item nav-link active" to="Master_Detail">
-          <button type="button" class="btn btn-success btn-sm">Login</button>
-          </Link>
+
+
+  
+          <Login/>
+       
+    
         </div>
       </nav>
     </React.Fragment>
   );
 }
+
+
+
+
+
+ 
+
+
+
