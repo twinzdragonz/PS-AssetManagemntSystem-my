@@ -11,6 +11,7 @@ CONSTANTS.ERROR_MESSAGE.LIST_ADD = "Request to add list item failed:";
 CONSTANTS.ERROR_MESSAGE.LIST_GET = "Request to get list items failed:";
 CONSTANTS.ERROR_MESSAGE.LIST_EMPTY_MESSAGE = "Please enter a valid message";
 CONSTANTS.ERROR_MESSAGE.MASTERDETAIL_GET = "Request to get master detail text failed:";
+CONSTANTS.ERROR_MESSAGE.LOGIN_GET = "Request to Login text failed";
 
 // Live production URL
 CONSTANTS.ENDPOINT.URL = "http://54.251.165.232:80";

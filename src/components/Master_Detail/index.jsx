@@ -63,13 +63,18 @@ export default class Master_Detail extends Component {
     this.setState({ currentDisplayTabIndex: id });
   }
 
+
+
+
+
   render() {
+    
     const {
       masterDetailText,
       currentDisplayTabIndex,
       WarningMessageOpen,
       WarningMessageText
-    } = this.state;
+    } = this.state
     return (
       <main id="mainContent">
         <div className="container-fluid">

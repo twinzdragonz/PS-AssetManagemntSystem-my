@@ -11,6 +11,7 @@ import Login from "./components/Login";
 
 //TODO Web Template Studio: Add routes for your new pages here.
 class App extends Component {
+
   render() {
     return (
       <React.Fragment>
@@ -21,6 +22,8 @@ class App extends Component {
           <Route path = "/Blank" component = { Blank } />
           <Route path = "/List" component = { List } />
           <Route path = "/Master_Detail" component = { Master_Detail } />
+
+
           <Route path = "/Login" component = { Login } />
         </Switch>
         <Footer />

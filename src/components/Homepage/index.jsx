@@ -1,7 +1,7 @@
 ﻿import React, { Component } from "react";
 import classnames from "classnames";
 import GridComponent from "./GridComponent";
-import Video from "./video";
+
 import WarningMessage from "../WarningMessage";
 import GreyBox from "../../images/GreyBox.svg";
 import styles from "./grid.module.css";
@@ -18,7 +18,7 @@ export default class Homepage extends Component {
 
     this.handleWarningClose = this.handleWarningClose.bind(this);
   }
-
+/*
     componentDidMount(){
         fetch(CONSTANTS.ENDPOINT.URL + CONSTANTS.SYSTEM.CALL,{
         method: 'POST',
@@ -40,6 +40,8 @@ export default class Homepage extends Component {
           })
         )
     }
+
+    */
 
   handleWarningClose() {
     this.setState({

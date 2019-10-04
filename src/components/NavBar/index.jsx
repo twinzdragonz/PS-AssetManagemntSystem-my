@@ -2,7 +2,6 @@
 import { Link } from "react-router-dom";
 import styles from "./navbar.module.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
 import Login from '../Login/index';
 
 
@@ -28,11 +27,7 @@ export default function NavBar() {
             About
           </Link>
 
-
-  
           <Login/>
-       
-    
         </div>
       </nav>
     </React.Fragment>
