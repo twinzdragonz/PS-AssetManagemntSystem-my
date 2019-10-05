@@ -6,6 +6,7 @@ import MasterDetailSideBarTab from "./MasterDetailSideBarTab";
 import GreyAvatar from "../../images/GreyAvatar.svg";
 import styles from "./masterdetail.module.css";
 import CONSTANTS from "../../constants";
+import db from "../Database/db";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -31,31 +32,39 @@ export default class Dashboard extends Component {
   }
 // this is how u call from login : this.props.location.state.username
   // Get the sample data from the back end
+  // complicated enough to learn the life cycle
   componentDidMount() {
-
-
-    fetch(CONSTANTS.ENDPOINT.MASTERDETAIL)
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response.json();
-      })
-      .then(result => {
-        this.setState({ masterDetailText: result });
-      })
-      .catch(error =>
-        this.setState({
-          WarningMessageOpen: true,
-          WarningMessageText: `${
-            CONSTANTS.ERROR_MESSAGE.MASTERDETAIL_GET
-          } ${error}`
-        })
-      );
-
-      
+      console.log(this.props.username);
+     
+       // 
+          
+          // only do data fetch if user is authenticated.
+       this.dataFetch();
 
   }
+
+  dataFetch()
+  {
+        // get the necessary items inside , then only do 
+        fetch(CONSTANTS.ENDPOINT.MASTERDETAIL)
+        .then(response => {
+          if (!response.ok) {
+            throw Error(response.statusText);
+          }
+          return response.json();
+        })
+        .then(result => {
+          this.setState({ masterDetailText: result });
+        })
+        .catch(error =>
+          this.setState({
+            WarningMessageOpen: true,
+            WarningMessageText: `${
+              CONSTANTS.ERROR_MESSAGE.MASTERDETAIL_GET
+            } ${error}`
+          })
+        );
+}
 
   handleWarningClose() {
     this.setState({
@@ -73,6 +82,7 @@ export default class Dashboard extends Component {
 
 
   render() {
+        
     
     const {
       masterDetailText,

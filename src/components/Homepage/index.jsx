@@ -7,6 +7,8 @@ import GreyBox from "../../images/GreyBox.svg";
 import styles from "./grid.module.css";
 import CONSTANTS from "../../constants";
 
+import NavBar from "../NavBar";
+
 export default class Homepage extends Component {
   constructor(props) {
     super(props);
@@ -57,6 +59,7 @@ export default class Homepage extends Component {
       WarningMessageText
     } = this.state;
     return (
+     
       <main id="mainContent">
         <div className={classnames("text-center", styles.header)}>
           

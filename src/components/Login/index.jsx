@@ -6,6 +6,7 @@ import CONSTANTS from "../../constants";
 import WarningMessage from "../WarningMessage";
 import "./Login.css";
 import Axios from "axios";
+import db from "../Database/db";
 
 
 export default class Login extends Component {
@@ -60,7 +61,38 @@ export default class Login extends Component {
               isAuthenticated:true
             });
 
+            var is_exist = false;
+            console.log("USER_EXIST",is_exist);
+         // find this user
+          db.user_info.where("userName").equalsIgnoreCase(this.state.username).each(function (data) {
+      
+              is_exist = true;
+              console.log("USER_EXIST",is_exist);
+              // preset to exist 
+              console.log("userName: " + data.userName + ".Token: " + data.token);
+        
+        }).then(() => {
+           // if not exist only add
+           console.log("USER_EXIST",is_exist);
+           if(is_exist === false)
+           {
+              console.log("username is not exist, inserting now");
+                db.user_info.add({
+                      //userName,passWord,token,isAuthenticated,userIndex
+                      userName : this.state.username,
+                      passWord : this.state.password,
+                      token    : "TOKEN",
+                      isAuthenticated : this.state.isAuthenticated,
+                      userIndex : 1
+                });
+                console.log("username inserted");
           }
+        }).catch(function(error){
+          console.log(error);
+  
+              });
+         
+      }
 
     }).catch(function(error){
         console.log(error);
@@ -78,83 +110,22 @@ export default class Login extends Component {
     this.setState({isLoggedIn: false});
   }
 
-  redirect(){
-    return <Redirect  to={{
-      pathname: '/Dashboard',
-      state: { 
-               username : this.state.username,
-               password : this.state.password,
-               isAuthenticated: this.state.isAuthenticated,
-               token    : "SOME RANDOM TOKEN LEL",
-
-          }
-  }}  />
-  }
-
-
-
-
-
-  /*
-   // when user press button set here
-  handleSubmit = event => {
-    //CONSTANTS.ENDPOINT.URL + CONSTANTS.SYSTEM.CALL
-    fetch(CONSTANTS.ENDPOINT.URL + CONSTANTS.API.LOGIN,
-    {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        req_username: this.state.username,
-        req_password: this.state.password
-      })
-
-      
-    })
-    .then(response =>{
-      if(!response.ok)
-         {
-          this.setState({
-            WarningMessageOpen: true,
-            WarningMessageText: 'Fail to Login, Please try again'});
-         }
-         else{
-           var iresp = data:findresponse.iresp;
-
-          this.setState({
-            WarningMessageOpen: true,
-            WarningMessageText: 'Login success, Redirecting..'});
-         }
-         return response.json();
-
-    }).then((data) => {
-      this.setState({ todos: data })
-      console.log(this.state.todos)
-
-    }).catch(error =>
-      this.setState({
-        WarningMessageOpen: true,
-        WarningMessageText: `${
-          CONSTANTS.ERROR_MESSAGE.LOGIN_GET
-        } ${error}`
-      })
-    );
-
-    event.preventDefault();
-  }
-
-  */
 
      render() {
-     
-   
-      if(this.state.isAuthenticated){
-        console.log("User authenticated successfully");
-      
-    }
-
+    
+          const redirectToReferrer = this.state.isAuthenticated;
+          if (redirectToReferrer === true) {
+            console.log("Server agree to Reroute to Dashboard");
+              return <Redirect to={{
+                pathname: '/Dashboard',
+                state: { username : this.state.username,
+                        password : this.state.password,
+                        token : this.state.token,
+                        isAuthenticated : this.state.isAuthenticated }
+            }}
+    />
+          }
+    
       const handleClose = () => this.setState({
         show : false
       })

@@ -36,7 +36,6 @@ export default class Logout extends Component {
 
   handleSubmit = event =>{
 
-    
     console.log("handling submit");
     Axios.post(CONSTANTS.ENDPOINT.URL + CONSTANTS.API.LOGIN,{
        req_username : this.state.username,
