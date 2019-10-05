@@ -7,7 +7,7 @@ import GreyAvatar from "../../images/GreyAvatar.svg";
 import styles from "./masterdetail.module.css";
 import CONSTANTS from "../../constants";
 
-export default class Master_Detail extends Component {
+export default class Dashboard extends Component {
   constructor(props) {
     super(props);
 
@@ -29,9 +29,11 @@ export default class Master_Detail extends Component {
     this.handleDisplayTabClick = this.handleDisplayTabClick.bind(this);
     this.handleWarningClose = this.handleWarningClose.bind(this);
   }
-
+// this is how u call from login : this.props.location.state.username
   // Get the sample data from the back end
   componentDidMount() {
+
+
     fetch(CONSTANTS.ENDPOINT.MASTERDETAIL)
       .then(response => {
         if (!response.ok) {
@@ -50,6 +52,9 @@ export default class Master_Detail extends Component {
           } ${error}`
         })
       );
+
+      
+
   }
 
   handleWarningClose() {

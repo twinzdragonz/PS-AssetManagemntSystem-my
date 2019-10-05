@@ -70,6 +70,27 @@ export default class Login extends Component {
     event.preventDefault();
   }
 
+   handleLoginClick() {
+    this.setState({isLoggedIn: true});
+  }
+
+  handleLogoutClick() {
+    this.setState({isLoggedIn: false});
+  }
+
+  redirect(){
+    return <Redirect  to={{
+      pathname: '/Dashboard',
+      state: { 
+               username : this.state.username,
+               password : this.state.password,
+               isAuthenticated: this.state.isAuthenticated,
+               token    : "SOME RANDOM TOKEN LEL",
+
+          }
+  }}  />
+  }
+
 
 
 
@@ -127,19 +148,11 @@ export default class Login extends Component {
   */
 
      render() {
+     
+   
       if(this.state.isAuthenticated){
         console.log("User authenticated successfully");
-       return <Redirect to={{
-          pathname: '/Blank',
-          state: { 
-                   username : this.state.username,
-                   password : this.state.password,
-                   isAuthenticated: this.state.isAuthenticated,
-                   token    : "SOME RANDOM TOKEN LEL",
-
-              }
-      }}  />
-
+      
     }
 
       const handleClose = () => this.setState({
@@ -156,7 +169,10 @@ export default class Login extends Component {
 
        return (
         <React.Fragment>
-       <Button variant="success" size="sm" onClick={handleShow}>  Login  </Button>
+    
+      <Button variant="success" size="sm" onClick={handleShow}>  Login  </Button>
+    
+    
 
       <Modal show={this.state.show} onHide={handleClose}>
         <Modal.Header closeButton>

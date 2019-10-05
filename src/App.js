@@ -6,8 +6,9 @@ import Footer from "./components/Footer";
 import Blank from "./components/Blank";
 import Homepage from "./components/Homepage";
 import List from "./components/List";
-import Master_Detail from "./components/Master_Detail";
+import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 
 //TODO Web Template Studio: Add routes for your new pages here.
 class App extends Component {
@@ -21,10 +22,8 @@ class App extends Component {
           <Route path = "/Homepage" component = { Homepage } />
           <Route path = "/Blank" component = { Blank } />
           <Route path = "/List" component = { List } />
-          <Route path = "/Master_Detail" component = { Master_Detail } />
-
-
-          <Route path = "/Login" component = { Login } />
+          <Route path = "/Dashboard" component = { Dashboard } />
+        
         </Switch>
         <Footer />
       </React.Fragment>
