@@ -18,7 +18,6 @@ export default class Homepage extends Component {
 
     this.handleWarningClose = this.handleWarningClose.bind(this);
   }
-/*
     componentDidMount(){
         fetch(CONSTANTS.ENDPOINT.URL + CONSTANTS.SYSTEM.CALL,{
         method: 'POST',
@@ -41,7 +40,7 @@ export default class Homepage extends Component {
         )
     }
 
-    */
+
 
   handleWarningClose() {
     this.setState({

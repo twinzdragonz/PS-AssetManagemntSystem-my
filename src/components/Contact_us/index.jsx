@@ -1,10 +1,13 @@
 ﻿import React, { Component } from "react";
+import classnames from "classnames";
 import ListItem from "./ListItem";
 import ListForm from "./ListForm";
 import WarningMessage from "../WarningMessage";
 import CONSTANTS from "../../constants";
+import {Button,Form} from 'react-bootstrap';
+import styles from "./Contact_us.css";
 
-export default class List extends Component {
+export default class Contact_us extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +23,7 @@ export default class List extends Component {
 
   // Get the sample data from the back end
   componentDidMount() {
+       /* 
     fetch(CONSTANTS.ENDPOINT.LIST)
       .then(response => {
         if (!response.ok) {
@@ -34,7 +38,12 @@ export default class List extends Component {
           WarningMessageText: `${CONSTANTS.ERROR_MESSAGE.LIST_GET} ${error}`
         })
       );
+
+      */
   }
+
+  // on submit 
+  // api call push data into db 
 
   handleDeleteListItem(listItem) {
     fetch(`${CONSTANTS.ENDPOINT.LIST}/${listItem._id}`, { method: "DELETE" })
@@ -100,6 +109,56 @@ export default class List extends Component {
     });
   }
 
+
+  render()
+  {
+    return(
+
+      <div className="row">
+  <div className="col"></div>
+
+
+  <div className="col">
+    <div className={classnames("", styles.header)}>
+        
+         <br></br><br></br>
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+          <Form.Label></Form.Label>
+             <Form.Label>Contact Us</Form.Label>
+               <Form.Control type="email" placeholder="Enter email" />
+                  <Form.Text className="text-muted">
+                  <Form.Label></Form.Label>
+               <Form.Control type="email" placeholder="Enter Phone Number" />
+                  <Form.Text className="text-muted"></Form.Text>      
+                   We'll never share your data with anyone else, We Promise.
+                </Form.Text>
+           </Form.Group>
+
+           <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Say Something</Form.Label>
+            <Form.Control as="textarea" rows="3" />
+              </Form.Group>
+
+              <Form.Group controlId="formBasicCheckbox">
+                  <Form.Check type="checkbox" label="Check me out" />
+                </Form.Group>
+           <Button variant="primary" type="submit">Submit </Button>
+          </Form>
+        </div>
+</div>
+
+  <div className="col"></div>
+     </div>
+
+    
+
+    );
+
+    
+  }
+
+/*
   render() {
     const {
       list,
@@ -133,4 +192,6 @@ export default class List extends Component {
       </main>
     );
   }
+
+  */
 }

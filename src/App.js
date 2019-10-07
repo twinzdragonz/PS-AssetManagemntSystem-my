@@ -5,14 +5,11 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Blank from "./components/Blank";
 import Homepage from "./components/Homepage";
-import List from "./components/List";
+import Contact_us from "./components/Contact_us";
 import Dashboard from "./components/Dashboard";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
 import NotFound from "./components/Error";
 
 
-import db from "./components/Database/db";
 
 //TODO Web Template Studio: Add routes for your new pages here.
 class App extends Component {
@@ -25,7 +22,7 @@ class App extends Component {
           <Redirect exact path = "/" to = "/Homepage" />
           <Route path = "/Homepage" component = { Homepage } />
           <Route path = "/Blank" component = { Blank } />
-          <Route path = "/List" component = { List } />
+          <Route path = "/Contact_us" component = { Contact_us } />
            <Route path = "/Dashboard"  render={(props) => <Dashboard {...props} /> }  />
 
            <Route component={NotFound} />

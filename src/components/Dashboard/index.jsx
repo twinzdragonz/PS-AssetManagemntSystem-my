@@ -6,7 +6,7 @@ import MasterDetailSideBarTab from "./MasterDetailSideBarTab";
 import GreyAvatar from "../../images/GreyAvatar.svg";
 import styles from "./masterdetail.module.css";
 import CONSTANTS from "../../constants";
-import db from "../Database/db";
+
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -14,6 +14,12 @@ export default class Dashboard extends Component {
 
     this.state = {
       currentDisplayTabIndex: 0,
+
+      username :null,
+      password : null,
+      token : null,
+      isAuthenticated : false,
+
       masterDetailText: [
         {
           shortDescription: "",
@@ -34,13 +40,34 @@ export default class Dashboard extends Component {
   // Get the sample data from the back end
   // complicated enough to learn the life cycle
   componentDidMount() {
-      console.log("DASHBOARD NAME :",this.props.username);
-     
-       // 
-          
-          // only do data fetch if user is authenticated.
-       this.dataFetch();
+    console.log("DASHBOARD NAME BEFORE :",this.state.username);
+      this.dataFetch();
+      try{
+  
+        this.setState({
+          username :this.props.location.state.username,
+          password : this.props.location.state.password,
+          isAuthenticated : this.props.location.state.isAuthenticated,
+          token : this.props.location.state.token
+        });
+        console.log("DASHBOARD NAME AFTER:",this.state.username);   
 
+      }catch(Ex)
+      {
+        
+        console.log(Ex);
+        console.log("Server Violation, Reroute to MainPage");
+        console.log("Server agree to Reroute to MainPage");
+           // javascript way to redirect into Homepage 
+            var cur_url = window.location.href;
+            // remove everything after slash /
+            cur_url = cur_url.substring(0, cur_url.indexOf('/'));
+               // window location now append 
+            window.location.replace(cur_url+"/Homepage");
+  
+  
+      }
+      
   }
 
   dataFetch()
@@ -82,7 +109,7 @@ export default class Dashboard extends Component {
 
 
   render() {
-        
+
     
     const {
       masterDetailText,

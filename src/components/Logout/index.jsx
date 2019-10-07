@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import {  Redirect } from "react-router-dom";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button , Modal,FormGroup,FormControl,FormLabel} from 'react-bootstrap';
+import {Button , Modal} from 'react-bootstrap';
 import CONSTANTS from "../../constants";
 import WarningMessage from "../WarningMessage";
 import "./Logout.css";
 import Axios from "axios";
+import db from "../Database/db";
 
 
 export default class Logout extends Component {
@@ -13,6 +14,10 @@ export default class Logout extends Component {
   {
     super(props);
        this.state = {
+         username : null,
+         password : null,
+         token : null,
+         isAuthenticated : null
 
     };
 
@@ -33,10 +38,66 @@ export default class Logout extends Component {
     });
   }
 
+componentDidMount()
+{
+  this.getUserInfo();
+}
+
+componentWillMount()
+{
+  this.getUserInfo();
+}
+
+componentWillUpdate()
+{
+  this.getUserInfo();
+  
+}
+
+componentDidUpdate()
+{
+  console.log("COMPONENT_DID_UPDATE",this.state.username);
+  if(this.state.username === null)
+  {
+      this.getUserInfo();
+     console.log("COMPONENT_DID_UPDATE",this.state.username);
+   //  this.forceUpdate();
+  }
+
+}
+
+ async getUserInfo()
+ {
+   try{
+
+   if(this.state.username === null){
+     var user_info = await db.user_info.orderBy("id").reverse().limit(1).toArray();
+     this.setState({
+      username : user_info[0]['userName'],
+      password : user_info[0]['passWord'],
+      isAuthenticated : user_info[0]['isAuthenticated'],
+      token : user_info[0]['token']
+    });
+
+
+  }
+  }catch(ex)
+  {
+    console.log(ex);
+  }
+
+      return user_info;
+ }
+
+
+
 
   handleSubmit = event =>{
 
     console.log("handling submit");
+
+    console.log(this.state.username);
+    console.log( this.state.password);
     Axios.post(CONSTANTS.ENDPOINT.URL + CONSTANTS.API.LOGIN,{
        req_username : this.state.username,
        req_password : this.state.password
@@ -51,6 +112,13 @@ export default class Logout extends Component {
             this.setState({
               isAuthenticated:false
             });
+              
+              
+              db.delete().then(() => {
+                console.log("Database successfully deleted");
+                }).catch((err) => {
+                console.error("Could not delete database");
+                }); 
 
           }
 
@@ -62,6 +130,7 @@ export default class Logout extends Component {
     event.preventDefault();
   }
 
+
    handleLoginClick() {
     this.setState({isLoggedIn: true});
   }
@@ -71,8 +140,21 @@ export default class Logout extends Component {
   }
 
      render() {
-     
 
+      // logout 
+
+      const redirectToReferrer = this.state.isAuthenticated;
+      if (redirectToReferrer === false) {
+        console.log("Server agree to Reroute to MainPage");
+         // javascript way to redirect into Homepage 
+          var cur_url = window.location.href;
+          // remove everything after slash /
+          cur_url = cur_url.substring(0, cur_url.indexOf('/'));
+             // window location now append 
+          window.location.replace(cur_url+"/Homepage");
+
+      }
+     
 
       const handleClose = () => this.setState({
         show : false
