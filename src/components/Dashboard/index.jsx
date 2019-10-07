@@ -34,7 +34,7 @@ export default class Dashboard extends Component {
   // Get the sample data from the back end
   // complicated enough to learn the life cycle
   componentDidMount() {
-      console.log(this.props.username);
+      console.log("DASHBOARD NAME :",this.props.username);
      
        // 
           

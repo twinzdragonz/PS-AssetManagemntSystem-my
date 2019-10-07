@@ -72,10 +72,7 @@ export default class Logout extends Component {
 
      render() {
      
-      if(!this.state.isAuthenticated){
-        console.log("User authenticated successfully");
-       return <Redirect exact path="/Homepage" to="/Homepage"/>
-    }
+
 
       const handleClose = () => this.setState({
         show : false

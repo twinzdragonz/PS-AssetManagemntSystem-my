@@ -1,5 +1,5 @@
 ﻿import React ,{Component} from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import styles from "./navbar.module.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "../Login/index";
@@ -20,8 +20,8 @@ export default class NavBar extends Component  {
     super(props);
        this.state = {
         show : false,
-        username : "Guest",
-        password : undefined,
+        username : null,
+        password : null,
         WarningMessageOpen: false,
         WarningMessageText: "",
         isAuthenticated : false
@@ -41,37 +41,53 @@ export default class NavBar extends Component  {
     });
   }
 
-  componentWillMount()
-  {
-     this.getUserInfo();
 
-    
+componentWillReceiveProps()
+{
+  console.log(window.location.href);
+  console.log("NAVBAR RELOAD", this.state.username);
+  if(this.state.username === null)
+  {
+    window.location.reload();
   }
+}
 
 
 
  async getUserInfo()
  {
+   try{
+
+   if(this.state.username === null){
      var user_info = await db.user_info.orderBy("id").reverse().limit(1).toArray();
      this.setState({
       username : user_info[0]['userName'],
       password : user_info[0]['passWord'],
       isAuthenticated : user_info[0]['isAuthenticated'],
       token : user_info[0]['token']
-    })
+    });
+
+
+  }
+  }catch(ex)
+  {
+    console.log(ex);
+  }
 
       return user_info;
  }
 
 
-  render(){
 
-  
+
+  render(){
+         
 
     console.log("IM ABOUT TO GRAB DATA");
     console.log("Current USERNAME : ",this.state.username);
  
         let preAuthButton ;
+        let titleLink;
          // db return value of is this user authenticated
          // determined here
          // 
@@ -80,12 +96,15 @@ export default class NavBar extends Component  {
         {
           preAuthButton = <Login/>
           console.log("User is not logged in yet");
+          titleLink = "/Homepage";
         }
         else
         {
        
           preAuthButton = <Logout/>
           console.log("User logged in , rendered logout");
+          titleLink = "/Dashboard";
+        
         }
          
       return (
@@ -94,9 +113,10 @@ export default class NavBar extends Component  {
         <a href="#mainContent">Skip to Main Content</a>
       </div>
       <nav className="navbar navbar-expand-sm navbar-light border-bottom justify-content-between">
-        <Link className="navbar-brand" to="/">
-          Policy Street Agent Portal 
+        <Link className="navbar-brand" to={titleLink}>
+          Policy Street Agent Portal
         </Link>
+        <a> user : {this.state.username}</a>
         <div className="navbar-nav">
 
           <Link className="nav-item nav-link active" to="Grid">
@@ -106,13 +126,17 @@ export default class NavBar extends Component  {
           <Link className="nav-item nav-link active" to="List">
             About
           </Link>
-         
+
 
          {preAuthButton}
-        
+     
+
         </div>
       </nav>
+
+     
     </React.Fragment>
+
    )  }
 }
 

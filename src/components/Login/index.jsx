@@ -102,6 +102,7 @@ export default class Login extends Component {
     event.preventDefault();
   }
 
+
    handleLoginClick() {
     this.setState({isLoggedIn: true});
   }
@@ -140,10 +141,9 @@ export default class Login extends Component {
 
        return (
         <React.Fragment>
-    
+
       <Button variant="success" size="sm" onClick={handleShow}>  Login  </Button>
-    
-    
+
 
       <Modal show={this.state.show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -152,7 +152,7 @@ export default class Login extends Component {
         <Modal.Body>
 
       <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="username" bsSize="large">
+          <FormGroup controlId="username" bssize="large">
             <FormLabel>Username</FormLabel>
             <FormControl
               autoFocus
@@ -161,7 +161,7 @@ export default class Login extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
+          <FormGroup controlId="password" bssize="large">
             <FormLabel>Password</FormLabel>
             <FormControl
               value={this.state.password}
@@ -171,8 +171,9 @@ export default class Login extends Component {
           </FormGroup>
           <Button
             block
-            bsSize="large"
+            bssize="large"
             disabled={!this.validateForm()}
+         
             type="submit"
           >
             Login
@@ -183,7 +184,7 @@ export default class Login extends Component {
 
           </Modal.Body>
         <Modal.Footer>
-          <p class="text-center">FOR DEMO USE ONLY</p>
+          <p className="text-center">FOR DEMO USE ONLY</p>
           <WarningMessage
           open={WarningMessageOpen}
           text={WarningMessageText}
