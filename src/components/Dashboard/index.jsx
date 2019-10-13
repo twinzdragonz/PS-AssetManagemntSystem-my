@@ -6,6 +6,7 @@ import MasterDetailSideBarTab from "./MasterDetailSideBarTab";
 import GreyAvatar from "../../images/GreyAvatar.svg";
 import styles from "./masterdetail.module.css";
 import CONSTANTS from "../../constants";
+import {Button , Modal,FormGroup,FormControl,FormLabel} from 'react-bootstrap';
 
 
 export default class Dashboard extends Component {
@@ -41,7 +42,10 @@ export default class Dashboard extends Component {
   // complicated enough to learn the life cycle
   componentDidMount() {
     console.log("DASHBOARD NAME BEFORE :",this.state.username);
-      this.dataFetch();
+
+      //this.dataFetch();
+
+
       try{
   
         this.setState({
@@ -72,7 +76,8 @@ export default class Dashboard extends Component {
 
   dataFetch()
   {
-        // get the necessary items inside , then only do 
+       // TODO : GET LIST OF RENDERED PAGE THAT THIS USER CAN SEE
+
         fetch(CONSTANTS.ENDPOINT.MASTERDETAIL)
         .then(response => {
           if (!response.ok) {
@@ -137,9 +142,13 @@ export default class Dashboard extends Component {
                     image={GreyAvatar}
                     index={index}
                     key={textAssets.id}
+                    
                   />
                 ))}
+                <Button className="list-group-itemlist group-item-action"
+                        variant="success">  Login  </Button>
               </div>
+      
             </div>
             <MasterDetailPage
               textSampleData={masterDetailText[currentDisplayTabIndex]}

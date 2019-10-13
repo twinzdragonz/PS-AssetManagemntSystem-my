@@ -15,6 +15,7 @@ export default function MasterDetailSideBarTab(props) {
       )}
     >
       <img src={image} alt="Default Grey Avatar" className="mr-3" />
+
       {tabText}
     </button>
   );
