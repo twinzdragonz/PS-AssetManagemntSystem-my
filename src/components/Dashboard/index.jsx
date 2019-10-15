@@ -6,9 +6,9 @@ import CONSTANTS from "../../constants";
 
 import {Button , Modal,FormGroup,FormControl,FormLabel} from 'react-bootstrap';
 
-
+import MasterDetailPage from "./MasterDetailPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome,faUsersCog,faPager,faCogs, faIdCard, faBalanceScale, faTools } from "@fortawesome/free-solid-svg-icons";
 
 
 export default class Dashboard extends Component {
@@ -145,31 +145,50 @@ export default class Dashboard extends Component {
             >
               <div className="list-group list-group-flush border-bottom">
 
-              <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                    styles.sidebarText )}><FontAwesomeIcon icon={faHome} />  Dashboard </button>
 
-                <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                            styles.sidebarText )}> Profile </button>
+          <button type="button"  className={classnames("list-group-item","list-group-item-action",
+                      styles.sidebarText )}> Main Menu   </button>
 
-                <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                            styles.sidebarText )}> User Management </button>
+          <button type="button"  className={classnames("list-group-item","list-group-item-action",
+                styles.sidebarText )}><FontAwesomeIcon icon={faHome} />  Dashboard </button>
 
-                <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                            styles.sidebarText )}> Page Management </button>
+          <button type="button"  className={classnames("list-group-item","list-group-item-action",
+                      styles.sidebarText )}><FontAwesomeIcon icon={faIdCard} /> Profile </button>
 
-                <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                            styles.sidebarText )}> Settings </button>
+          <button type="button"  className={classnames("list-group-item","list-group-item-action",
+                      styles.sidebarText )}><FontAwesomeIcon icon={faUsersCog} /> User Management </button>
+
+
+          <button type="button"  className={classnames("list-group-item","list-group-item-action",
+                                    styles.sidebarText )}> <FontAwesomeIcon icon={faBalanceScale} /> Product Management  </button>
+
+          <button type="button"  className={classnames("list-group-item","list-group-item-action",
+                      styles.sidebarText )}> <FontAwesomeIcon icon={faPager} /> Page Management </button>
+
+          <button type="button"  className={classnames("list-group-item","list-group-item-action",
+                                      styles.sidebarText )}> <FontAwesomeIcon icon={faPager} /> Reports </button>
+
+          <button type="button"  className={classnames("list-group-item","list-group-item-action",
+          styles.sidebarText )}> Administration </button>
+
+          <button type="button"  className={classnames("list-group-item","list-group-item-action",
+                      styles.sidebarText )}> <FontAwesomeIcon icon={faCogs} /> Settings </button>
+
+          <button type="button"  className={classnames("list-group-item","list-group-item-action",
+                      styles.sidebarText )}> <FontAwesomeIcon icon={faTools} /> Admin panel </button>
               </div>
 
             </div>
             <div>
-      
            </div>
+          <div>
+        </div>
 
-           <div>
- 
-  </div>
-           {/* main page  here */}
+        {/* render page in default*/}
+        <MasterDetailPage
+              textSampleData={masterDetailText[currentDisplayTabIndex]}
+            />
+        {/* if else render switch*/}
           </div>
         </div>
   

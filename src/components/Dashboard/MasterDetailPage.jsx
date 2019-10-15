@@ -45,6 +45,13 @@ export default function MasterDetailPage(props) {
           <p className={styles.title}>Description</p>
           <p>{longDescription}</p>
         </div>
+        <div className="col-md-8 col-12 ml-3 mb-5">
+          <p className={styles.title}>Status</p>
+          <p>{status}</p>
+          <p className={styles.title}>Order Date</p>
+          <p>{orderDate}</p>
+
+        </div>
       </div>
     </div>
   );
