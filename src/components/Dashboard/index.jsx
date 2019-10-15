@@ -1,15 +1,14 @@
 ﻿import React, { Component } from "react";
 import classnames from "classnames";
-import WarningMessage from "../WarningMessage";
-import MasterDetailPage from "./MasterDetailPage";
-import MasterDetailSideBarTab from "./MasterDetailSideBarTab";
-import GreyAvatar from "../../images/GreyAvatar.svg";
 import styles from "./masterdetail.module.css";
 import CONSTANTS from "../../constants";
+
+
 import {Button , Modal,FormGroup,FormControl,FormLabel} from 'react-bootstrap';
 
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 
 export default class Dashboard extends Component {
@@ -147,7 +146,7 @@ export default class Dashboard extends Component {
               <div className="list-group list-group-flush border-bottom">
 
               <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                             styles.sidebarText )}>  Dashboard </button>
+                    styles.sidebarText )}><FontAwesomeIcon icon={faHome} />  Dashboard </button>
 
                 <button type="button"  className={classnames("list-group-item","list-group-item-action",
                             styles.sidebarText )}> Profile </button>
@@ -164,8 +163,12 @@ export default class Dashboard extends Component {
 
             </div>
             <div>
-            <FontAwesomeIcon icon="check-square"/>
+      
            </div>
+
+           <div>
+ 
+  </div>
            {/* main page  here */}
           </div>
         </div>
