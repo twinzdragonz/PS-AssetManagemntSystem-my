@@ -9,9 +9,6 @@ import CONSTANTS from "../../constants";
 import {Button , Modal,FormGroup,FormControl,FormLabel} from 'react-bootstrap';
 
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -112,13 +109,6 @@ export default class Dashboard extends Component {
     this.setState({ currentDisplayTabIndex: id });
   }
 
-   Beverage = () => (
-    <div>
-      <FontAwesomeIcon icon="check-square" />
-      Favorite beverage: <FontAwesomeIcon icon="coffee" />
-    </div>
-  )
-
 
 
 
@@ -145,31 +135,30 @@ export default class Dashboard extends Component {
               )}
             >
               <div className="list-group list-group-flush border-bottom">
+                {masterDetailText.map((textAssets, index) => (
+                  <MasterDetailSideBarTab
+                    onDisplayTabClick={this.handleDisplayTabClick}
+                    tabText={textAssets.title}
+                    image={GreyAvatar}
+                    index={index}
+                    key={textAssets.id}
 
-              <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                             styles.sidebarText )}>  Dashboard </button>
-
-                <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                            styles.sidebarText )}> Profile </button>
-
-                <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                            styles.sidebarText )}> User Management </button>
-
-                <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                            styles.sidebarText )}> Page Management </button>
-
-                <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                            styles.sidebarText )}> Settings </button>
+                  />
+                ))}
+           
               </div>
 
             </div>
-            <div>
-            <FontAwesomeIcon icon="check-square"/>
-           </div>
-           {/* main page  here */}
+            <MasterDetailPage
+              textSampleData={masterDetailText[currentDisplayTabIndex]}
+            />
           </div>
         </div>
-  
+        <WarningMessage
+          open={WarningMessageOpen}
+          text={WarningMessageText}
+          onWarningClose={this.handleWarningClose}
+        />
       </main>
     );
   }

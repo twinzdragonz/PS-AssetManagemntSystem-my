@@ -56,10 +56,10 @@ export default class Homepage extends Component {
       WarningMessageText
     } = this.state;
     return (
-     
+
       <main id="mainContent">
         <div className={classnames("text-center", styles.header)}>
-          
+
         <h1 className={styles.white}>Policy Street Agent Portal </h1>
         <p className={styles.white}>Where Consumer and Agents meet satisfaction</p>
           <a href="https://policystreet.com/" className="btn btn-primary my-2">
