@@ -185,15 +185,20 @@ export default class Dashboard extends Component {
 
   render() {
 
-    const displayDashboard = () => this.setState({
-      on_show_Dashboard : true
-    })
+    const displayDashboard = () => this.setState({on_show_Dashboard : true});
+    const displayProfile = () => this.setState({on_show_Profile : true});
+    const displayUserManagement = () => this.setState({on_show_UserManagement : true});
+    const displayProductManagement = () => this.setState({on_show_ProductManagement : true});
+    const displayPageManagement = () => this.setState({on_show_PageManagement : true});
+    const displayReports = () => this.setState({on_show_Reports : true});
+    const displaySettings = () => this.setState({on_show_Settings : true});
+    const displayAdminPanel = () => this.setState({on_show_AdminPanel : true});
+
 
     const {
       masterDetailText,
       currentDisplayTabIndex,
     } = this.state
-
 
 
     return (
@@ -218,28 +223,28 @@ export default class Dashboard extends Component {
                 styles.sidebarText )} onClick={displayDashboard} ><FontAwesomeIcon icon={faHome} /> Dashboard </button>
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                      styles.sidebarText )}><FontAwesomeIcon icon={faIdCard} /> Profile </button>
+                      styles.sidebarText )} onClick={displayProfile} ><FontAwesomeIcon icon={faIdCard} /> Profile </button>
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                      styles.sidebarText )}><FontAwesomeIcon icon={faUsersCog} /> User Management </button>
+                      styles.sidebarText )}onClick={displayUserManagement} ><FontAwesomeIcon icon={faUsersCog} /> User Management </button>
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                                    styles.sidebarText )}> <FontAwesomeIcon icon={faBalanceScale} /> Product Management  </button>
+                                    styles.sidebarText )} onClick={displayProductManagement}> <FontAwesomeIcon icon={faBalanceScale} /> Product Management  </button>
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                      styles.sidebarText )}> <FontAwesomeIcon icon={faPager} /> Page Management </button>
+                      styles.sidebarText )}onClick={displayPageManagement} >  <FontAwesomeIcon icon={faPager} /> Page Management </button>
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                                      styles.sidebarText )}> <FontAwesomeIcon icon={faPager} /> Reports </button>
+                                      styles.sidebarText )} onClick={displayReports} > <FontAwesomeIcon icon={faPager} /> Reports </button>
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
-          styles.sidebarText )}> Administration </button>
+          styles.sidebarText )}  > Administration </button>
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                      styles.sidebarText )}> <FontAwesomeIcon icon={faCogs} /> Settings </button>
+                      styles.sidebarText )} onClick={displaySettings} > <FontAwesomeIcon icon={faCogs} /> Settings </button>
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                      styles.sidebarText )}> <FontAwesomeIcon icon={faTools} /> Admin panel </button>
+                      styles.sidebarText )} onClick={displayAdminPanel} > <FontAwesomeIcon icon={faTools} /> Admin panel </button>
               </div>
              </div>
             <div>
