@@ -2,14 +2,15 @@
 import classnames from "classnames";
 import styles from "./masterdetail.module.css";
 import CONSTANTS from "../../constants";
-
-
 import {Button , Modal,FormGroup,FormControl,FormLabel} from 'react-bootstrap';
-
 import MasterDetailPage from "./MasterDetailPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome,faUsersCog,faPager,faCogs, faIdCard, faBalanceScale, faTools } from "@fortawesome/free-solid-svg-icons";
 
+
+// import module page 
+
+import MainPage from "./module/MainPage";
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -34,7 +35,13 @@ export default class Dashboard extends Component {
           orderDate: "",
           id: 0
         }
-      ]
+      ],
+
+         // page render initialize 
+
+         on_show_Dashboard : false
+
+
     };
     this.handleDisplayTabClick = this.handleDisplayTabClick.bind(this);
     this.handleWarningClose = this.handleWarningClose.bind(this);
@@ -60,7 +67,7 @@ export default class Dashboard extends Component {
 
       }catch(Ex)
       {
-        
+ 
         console.log(Ex);
         console.log("Server Violation, Reroute to MainPage");
         console.log("Server agree to Reroute to MainPage");
@@ -82,7 +89,7 @@ export default class Dashboard extends Component {
 
         fetch(CONSTANTS.ENDPOINT.MASTERDETAIL)
         .then(response => {
-          if (!response.ok) {
+          if (!response.ok) {   
             throw Error(response.statusText);
           }
           return response.json();
@@ -111,26 +118,41 @@ export default class Dashboard extends Component {
     this.setState({ currentDisplayTabIndex: id });
   }
 
-   Beverage = () => (
-    <div>
-      <FontAwesomeIcon icon="check-square" />
-      Favorite beverage: <FontAwesomeIcon icon="coffee" />
-    </div>
-  )
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
 
+  render_controller()
+  {
+    if(this.state.on_show_Dashboard)
+    {
+       return <MainPage/>
+    }
+    else
+    {
 
+      return <MainPage/>
+      // default is MainPage
+    }
+  }
 
 
 
   render() {
 
-    
+    const displayDashboard = () => this.setState({
+      on_show_Dashboard : true
+    })
+
     const {
       masterDetailText,
       currentDisplayTabIndex,
-      WarningMessageOpen,
-      WarningMessageText
     } = this.state
+
+
+
     return (
       <main id="mainContent">
         <div className="container-fluid">
@@ -150,14 +172,13 @@ export default class Dashboard extends Component {
                       styles.sidebarText )}> Main Menu   </button>
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                styles.sidebarText )}><FontAwesomeIcon icon={faHome} />  Dashboard </button>
+                styles.sidebarText )} onClick={displayDashboard} ><FontAwesomeIcon icon={faHome} /> Dashboard </button>
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
                       styles.sidebarText )}><FontAwesomeIcon icon={faIdCard} /> Profile </button>
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
                       styles.sidebarText )}><FontAwesomeIcon icon={faUsersCog} /> User Management </button>
-
 
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
                                     styles.sidebarText )}> <FontAwesomeIcon icon={faBalanceScale} /> Product Management  </button>
@@ -177,17 +198,16 @@ export default class Dashboard extends Component {
           <button type="button"  className={classnames("list-group-item","list-group-item-action",
                       styles.sidebarText )}> <FontAwesomeIcon icon={faTools} /> Admin panel </button>
               </div>
-
-            </div>
+             </div>
             <div>
            </div>
           <div>
-        </div>
+         </div>
 
         {/* render page in default*/}
-        <MasterDetailPage
-              textSampleData={masterDetailText[currentDisplayTabIndex]}
-            />
+
+        {this.render_controller()}
+
         {/* if else render switch*/}
           </div>
         </div>
