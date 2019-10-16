@@ -5,12 +5,20 @@ import CONSTANTS from "../../constants";
 import {Button , Modal,FormGroup,FormControl,FormLabel} from 'react-bootstrap';
 import MasterDetailPage from "./MasterDetailPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome,faUsersCog,faPager,faCogs, faIdCard, faBalanceScale, faTools } from "@fortawesome/free-solid-svg-icons";
+import { faHome,faUsersCog,faPager,faCogs, faIdCard, faBalanceScale, faTools, faAssistiveListeningSystems } from "@fortawesome/free-solid-svg-icons";
 
 
 // import module page 
 
 import MainPage from "./module/MainPage";
+import AdminPanel from "./module/AdminPanel";
+import PageManagement from "./module/PageManagement";
+import ProductManagement from "./module/ProductManagement";
+import Profile from "./module/Profile";
+import Reports from "./module/Reports";
+import Settings from "./module/Settings";
+import UserManagement from "./module/UserManagement";
+
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -39,7 +47,15 @@ export default class Dashboard extends Component {
 
          // page render initialize 
 
-         on_show_Dashboard : false
+         on_show_Dashboard : false,
+         on_show_Profile : false,
+         on_show_UserManagement : false,
+         on_show_ProductManagement : false,
+         on_show_PageManagement : false,
+         on_show_Reports : false,
+         on_show_Settings : false,
+         on_show_AdminPanel :false
+
 
 
     };
@@ -56,7 +72,7 @@ export default class Dashboard extends Component {
 
 
       try{
-  
+
         this.setState({
           username :this.props.location.state.username,
           password : this.props.location.state.password,
@@ -67,7 +83,7 @@ export default class Dashboard extends Component {
 
       }catch(Ex)
       {
- 
+
         console.log(Ex);
         console.log("Server Violation, Reroute to MainPage");
         console.log("Server agree to Reroute to MainPage");
@@ -130,9 +146,36 @@ export default class Dashboard extends Component {
     {
        return <MainPage/>
     }
+    else if(this.state.on_show_AdminPanel)
+    {
+      return <AdminPanel/>
+    }
+    else if(this.state.on_show_ProductManagement)
+    {
+      return <ProductManagement/>
+    }
+    else if(this.state.on_show_PageManagement)
+    {
+      return <PageManagement/>
+    }
+    else if(this.state.on_show_UserManagement)
+    {
+      return <UserManagement/>
+    }
+    else if(this.state.on_show_Profile)
+    {
+      return <Profile/>
+    }
+    else if(this.state.on_show_Reports)
+    {
+        return <Reports/>
+    }
+    else if(this.state.on_show_Settings)
+    {
+      return <Settings/>
+    }
     else
     {
-
       return <MainPage/>
       // default is MainPage
     }
