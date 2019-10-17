@@ -2,12 +2,14 @@
 import classnames from "classnames";
 import styles from "./masterdetail.module.css";
 import CONSTANTS from "../../constants";
-import {Button , Modal,FormGroup,FormControl,FormLabel} from 'react-bootstrap';
+import {Button , Modal,FormGroup,FormControl,FormLabel,Container,Row,Col} from 'react-bootstrap';
 import MasterDetailPage from "./MasterDetailPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome,faUsersCog,faPager,faCogs, faIdCard, faBalanceScale, faTools, faAssistiveListeningSystems } from "@fortawesome/free-solid-svg-icons";
-
-
+import { faHome,faUsersCog,faPager,faCogs, faIdCard, faBalanceScale, faTools, faAssistiveListeningSystems, faCog } from "@fortawesome/free-solid-svg-icons";
+import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
+import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+// Be sure to include styles at some point, probably during your bootstraping
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 // import module page 
 
 import MainPage from "./module/MainPage";
@@ -45,7 +47,7 @@ export default class Dashboard extends Component {
         }
       ],
 
-         // page render initialize 
+         // page render initialize
 
          on_show_Dashboard : false,
          on_show_Profile : false,
@@ -69,8 +71,6 @@ export default class Dashboard extends Component {
     console.log("DASHBOARD NAME BEFORE :",this.state.username);
 
       //this.dataFetch();
-
-
       try{
 
         this.setState({
@@ -140,127 +140,23 @@ export default class Dashboard extends Component {
     });
   }
 
-  render_controller()
-  {
-    if(this.state.on_show_Dashboard)
-    {
-       return <MainPage/>
-    }
-    else if(this.state.on_show_AdminPanel)
-    {
-      return <AdminPanel/>
-    }
-    else if(this.state.on_show_ProductManagement)
-    {
-      return <ProductManagement/>
-    }
-    else if(this.state.on_show_PageManagement)
-    {
-      return <PageManagement/>
-    }
-    else if(this.state.on_show_UserManagement)
-    {
-      return <UserManagement/>
-    }
-    else if(this.state.on_show_Profile)
-    {
-      return <Profile/>
-    }
-    else if(this.state.on_show_Reports)
-    {
-        return <Reports/>
-    }
-    else if(this.state.on_show_Settings)
-    {
-      return <Settings/>
-    }
-    else
-    {
-      return <MainPage/>
-      // default is MainPage
-    }
-  }
-
-
-
   render() {
-
-    const displayDashboard = () => this.setState({on_show_Dashboard : true});
-    const displayProfile = () => this.setState({on_show_Profile : true});
-    const displayUserManagement = () => this.setState({on_show_UserManagement : true});
-    const displayProductManagement = () => this.setState({on_show_ProductManagement : true});
-    const displayPageManagement = () => this.setState({on_show_PageManagement : true});
-    const displayReports = () => this.setState({on_show_Reports : true});
-    const displaySettings = () => this.setState({on_show_Settings : true});
-    const displayAdminPanel = () => this.setState({on_show_AdminPanel : true});
-
-
-    const {
-      masterDetailText,
-      currentDisplayTabIndex,
-    } = this.state
-
-
     return (
-      <main id="mainContent">
-        <div className="container-fluid">
-          <div className="row">
-            <div
-              className={classnames(
-                "col-2",
-                "p-0",
-                "border-right",
-                styles.sidebar
-              )}
-            >
-              <div className="list-group list-group-flush border-bottom">
+      <React.Fragment>
+<Container>
+
+  <Row>
+    <Col md="auto"></Col>
+    <Col md="auto">2 of 3 (wider)</Col>
+    <Col  md="auto">3 of 3</Col>
+  </Row>
 
 
-          <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                      styles.sidebarText )}> Main Menu   </button>
 
-          <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                styles.sidebarText )} onClick={displayDashboard} ><FontAwesomeIcon icon={faHome} /> Dashboard </button>
+</Container>
 
-          <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                      styles.sidebarText )} onClick={displayProfile} ><FontAwesomeIcon icon={faIdCard} /> Profile </button>
+      </React.Fragment>
 
-          <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                      styles.sidebarText )}onClick={displayUserManagement} ><FontAwesomeIcon icon={faUsersCog} /> User Management </button>
-
-          <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                                    styles.sidebarText )} onClick={displayProductManagement}> <FontAwesomeIcon icon={faBalanceScale} /> Product Management  </button>
-
-          <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                      styles.sidebarText )}onClick={displayPageManagement} >  <FontAwesomeIcon icon={faPager} /> Page Management </button>
-
-          <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                                      styles.sidebarText )} onClick={displayReports} > <FontAwesomeIcon icon={faPager} /> Reports </button>
-
-          <button type="button"  className={classnames("list-group-item","list-group-item-action",
-          styles.sidebarText )}  > Administration </button>
-
-          <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                      styles.sidebarText )} onClick={displaySettings} > <FontAwesomeIcon icon={faCogs} /> Settings </button>
-
-          <button type="button"  className={classnames("list-group-item","list-group-item-action",
-                      styles.sidebarText )} onClick={displayAdminPanel} > <FontAwesomeIcon icon={faTools} /> Admin panel </button>
-              </div>
-             </div>
-            <div>
-           </div>
-          <div>
-         </div>
-
-        {/* render page in default*/}
-
-        {this.render_controller()}
-
-        {/* if else render switch*/}
-          </div>
-        </div>
-  
-      </main>
     );
   }
 }

@@ -1,10 +1,17 @@
 ﻿.sidebar {
   /* full height - footer height - navbar height */
-  min-height: calc(100vh - 160px - 57px);
+  min-height: calc(100vh - 50px - 10px);
 }
 .sidebarText {
   font-weight: 200;
 }
+
+.nav{
+
+  background:#1F92DA !important;
+
+}
+
 
 .title {
   font-weight: 700;
