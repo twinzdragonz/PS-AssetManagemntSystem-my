@@ -26,10 +26,10 @@ class App extends Component {
            <Route path = "/Dashboard"  render={(props) => <Dashboard {...props} /> }  />
 
            <Route component={NotFound} />
-
+        
         </Switch>
         <Footer />
-      </React.Fragment>
+      </React.Fragment>   
 
 
 
