@@ -5,7 +5,7 @@ import CONSTANTS from "../../constants";
 import {Button , Modal,FormGroup,FormControl,FormLabel} from 'react-bootstrap';
 import MasterDetailPage from "./MasterDetailPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome,faUsersCog,faPager,faCogs, faIdCard, faBalanceScale, faTools, faAssistiveListeningSystems } from "@fortawesome/free-solid-svg-icons";
+import { faHome,faUsersCog,faPager,faCogs, faIdCard, faBalanceScale, faTools } from "@fortawesome/free-solid-svg-icons";
 
 
 // import module page 
@@ -140,6 +140,12 @@ export default class Dashboard extends Component {
     });
   }
 
+
+  componentWillUpdate()
+  {
+    this.render_controller();
+  }
+
   render_controller()
   {
     if(this.state.on_show_Dashboard)
@@ -179,6 +185,12 @@ export default class Dashboard extends Component {
       return <MainPage/>
       // default is MainPage
     }
+  }
+
+  render_reset()
+  {
+    
+    
   }
 
 
