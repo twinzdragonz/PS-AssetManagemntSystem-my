@@ -27,10 +27,9 @@ export default class AdminPanel extends Component{
 
 		return(
 		<div className="container">
-			Hello this is AdminPanel Page
-
+		
 			<DataTable
-        title="Arnold Movies"
+        title="Admin Panel"
         columns={columns}
         data={data}
       />
