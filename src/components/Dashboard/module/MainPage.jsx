@@ -9,6 +9,10 @@ export default class MainPage extends Component{
 		return(
 		<div className="container">
 		<br></br>
+
+		
+	
+
 		  <Alert variant="success">
 			<Alert.Heading>  Welcome to empty Dashboard</Alert.Heading>
 			<p>
@@ -22,6 +26,7 @@ export default class MainPage extends Component{
 				and tidy.
 			</p>
         </Alert>
+
 		</div>
 		)
 	}

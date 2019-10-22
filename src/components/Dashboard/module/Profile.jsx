@@ -10,35 +10,15 @@ export default class Profile extends Component{
 		return(
 		<div className = "container">
 			<br></br>
-		 <Table responsive>
-		<thead>
-		<tr>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-			<td>Username</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>@mdo</td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td>@</td>
-		</tr>
-		<tr>
-			<td>3</td>
-			<td colSpan="2">Larry the Bird</td>
-			<td>@twitter</td>
-		</tr>
-		</tbody>
-		</Table>
+			<div className="box box-default">     
+			  <div class="box-header with-border">
+				  Login Details
+				</div>
+
+
+			</div>
+
+		 
 		</div>
 		)
 	}
