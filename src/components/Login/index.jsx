@@ -43,7 +43,6 @@ export default class Login extends Component {
     });
   }
 
-
   handleSubmit = event =>{
     console.log("handling submit");
     Axios.post(CONSTANTS.ENDPOINT.URL + CONSTANTS.API.LOGIN,{
@@ -63,14 +62,15 @@ export default class Login extends Component {
 
             var is_exist = false;
             console.log("USER_EXIST",is_exist);
+
          // find this user
-          db.user_info.where("userName").equalsIgnoreCase(this.state.username).each(function (data) {
-      
+              db.user_info.where("userName").equalsIgnoreCase(this.state.username).each(function (data) {
+
               is_exist = true;
               console.log("USER_EXIST",is_exist);
-              // preset to exist 
+              // preset to exist
               console.log("userName: " + data.userName + ".Token: " + data.token);
-        
+
         }).then(() => {
            // if not exist only add
            console.log("USER_EXIST",is_exist);
@@ -89,9 +89,7 @@ export default class Login extends Component {
           }
         }).catch(function(error){
           console.log(error);
-  
               });
-         
       }
 
     }).catch(function(error){
@@ -113,7 +111,7 @@ export default class Login extends Component {
 
 
      render() {
-    
+
           const redirectToReferrer = this.state.isAuthenticated;
           if (redirectToReferrer === true) {
             console.log("Server agree to Reroute to Dashboard");
@@ -126,7 +124,7 @@ export default class Login extends Component {
             }}
     />
           }
-    
+
       const handleClose = () => this.setState({
         show : false
       })
@@ -173,7 +171,7 @@ export default class Login extends Component {
             block
             bssize="large"
             disabled={!this.validateForm()}
-         
+
             type="submit"
           >
             Login

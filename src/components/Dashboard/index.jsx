@@ -93,16 +93,14 @@ export default class Dashboard extends Component {
             cur_url = cur_url.substring(0, cur_url.indexOf('/'));
                // window location now append 
             window.location.replace(cur_url+"/Homepage");
-  
-  
+
       }
-      
+
   }
 
   dataFetch()
   {
        // TODO : GET LIST OF RENDERED PAGE THAT THIS USER CAN SEE
-
         fetch(CONSTANTS.ENDPOINT.MASTERDETAIL)
         .then(response => {
           if (!response.ok) {   
@@ -187,14 +185,6 @@ export default class Dashboard extends Component {
     }
   }
 
-  render_reset()
-  {
-    
-    
-  }
-
-
-
   render() {
 
     const displayDashboard = () => this.setState({on_show_Dashboard : true});
@@ -265,9 +255,7 @@ export default class Dashboard extends Component {
          </div>
 
         {/* render page in default*/}
-
         {this.render_controller()}
-
         {/* if else render switch*/}
           </div>
         </div>

@@ -26,7 +26,7 @@ export default class Homepage extends Component {
       })
         .then(response => {
          if (!response.ok) {
-   
+
            throw Error(response.statusText);
           }
        return response.json();
@@ -67,7 +67,7 @@ export default class Homepage extends Component {
           </a>
         </div>
 
-      {/* just want to test how the video play <Video/> */}
+        {/* just want to test how the video play <Video/> */}
 
         <div className="container">
           <div className="row justify-content-center py-5">

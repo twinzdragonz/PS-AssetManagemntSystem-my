@@ -20,6 +20,8 @@ CONSTANTS.ENDPOINT.GRID = "/api/Homepage";
 CONSTANTS.ENDPOINT.LIST = "/api/list";
 CONSTANTS.ENDPOINT.MASTERDETAIL = "/api/masterdetail";
 CONSTANTS.API.LOGIN = "/api/login";
+CONSTANTS.API.USER_LIST = "/api/userlist";
+CONSTANTS.API.CONTACT_US = "/api/contact_us";
 CONSTANTS.SYSTEM.CALL = "/api/ams_system";
 
 export default CONSTANTS;

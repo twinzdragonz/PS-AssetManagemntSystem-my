@@ -6,44 +6,75 @@ import WarningMessage from "../WarningMessage";
 import CONSTANTS from "../../constants";
 import {Button,Form} from 'react-bootstrap';
 import styles from "./Contact_us.css";
+import Axios from "axios";
+import db from "../Database/db";
 
 export default class Contact_us extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      list: [],
-      WarningMessageOpen: false,
-      WarningMessageText: "Owh my God Somethings Happen"
-    };
+     show : false,
+     username : "",
+     password : "",
+     isAuthenticated : false,
+     email : "",
+     phone_number : "",
+     text : "",
+     list: [],
+     WarningMessageOpen: false,
+     WarningMessageText: "Owh my God Somethings Happen"
+
+ };
 
     this.handleWarningClose = this.handleWarningClose.bind(this);
-    this.handleDeleteListItem = this.handleDeleteListItem.bind(this);
-    this.handleAddListItem = this.handleAddListItem.bind(this);
-  }
+    this.handleWarningClose = this.handleWarningClose.bind(this);
 
-  // Get the sample data from the back end
-  componentDidMount() {
-       /* 
-    fetch(CONSTANTS.ENDPOINT.LIST)
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.statusText);
-        }
-        return response.json();
-      })
-      .then(result => this.setState({ list: result }))
-      .catch(error =>
-        this.setState({
-          WarningMessageOpen: true,
-          WarningMessageText: `${CONSTANTS.ERROR_MESSAGE.LIST_GET} ${error}`
-        })
-      );
-
-      */
   }
 
   // on submit 
   // api call push data into db 
+
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  }
+
+  handleWarningClose() {
+    this.setState({
+      WarningMessageOpen: false,
+      WarningMessageText: ""
+    });
+  }
+
+
+  handleSubmit = event =>{
+    console.log("handling submit");
+    Axios.post(CONSTANTS.ENDPOINT.URL + CONSTANTS.API.CONTACT_US,{
+       req_email : this.state.email,
+       req_phone_num : this.state.phone_number,
+       req_message : this.state.text
+
+    }).then((response) => {
+      console.log(response);
+      console.log(response.data);
+
+        if(response.data.resp_code === "00")
+          {
+            console.log(response.data.resp_code);
+            this.setState({
+              WarningMessageOpen: true,
+              WarningMessageText: `Form Submited`
+            })
+
+          }
+ 
+        });
+
+
+    event.preventDefault();
+  }
 
   handleDeleteListItem(listItem) {
     fetch(`${CONSTANTS.ENDPOINT.LIST}/${listItem._id}`, { method: "DELETE" })
@@ -102,16 +133,13 @@ export default class Contact_us extends Component {
       );
   }
 
-  handleWarningClose() {
-    this.setState({
-      WarningMessageOpen: false,
-      WarningMessageText: ""
-    });
-  }
-
 
   render()
   {
+    const {
+      WarningMessageOpen,
+      WarningMessageText
+    } = this.state;
     return(
 
       <div className="row">
@@ -120,78 +148,37 @@ export default class Contact_us extends Component {
 
   <div className="col">
     <div className={classnames("", styles.header)}>
-        
+
          <br></br><br></br>
-        <Form>
-          <Form.Group controlId="formBasicEmail">
+         <form onSubmit={this.handleSubmit}>
+          <Form.Group >
           <Form.Label></Form.Label>
              <Form.Label>Contact Us</Form.Label>
-               <Form.Control type="email" placeholder="Enter email" />
-                  <Form.Text className="text-muted">
+               <Form.Control value={this.state.email}  onChange={this.handleChange} type="email" placeholder="Enter email" />
+                  <Form.Text >
                   <Form.Label></Form.Label>
-               <Form.Control type="email" placeholder="Enter Phone Number" />
-                  <Form.Text className="text-muted"></Form.Text>      
-                   We'll never share your data with anyone else, We Promise.
-                </Form.Text>
-           </Form.Group>
-
-           <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Control value={this.state.phone_number}  onChange={this.handleChange} type="text" placeholder="Enter Phone Number" />
+                     <Form.Text ></Form.Text>
+                       We'll never share your data with anyone else, We Promise.
+                      </Form.Text>
             <Form.Label>Say Something</Form.Label>
-            <Form.Control as="textarea" rows="3" />
+            <Form.Control value={this.state.text}  onChange={this.handleChange} as="textarea" rows="3" />
               </Form.Group>
 
-              <Form.Group controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
            <Button variant="primary" type="submit">Submit </Button>
-          </Form>
+          </form>
         </div>
-</div>
+        <WarningMessage
+          open={WarningMessageOpen}
+          text={WarningMessageText}
+          onWarningClose={this.handleWarningClose} />
+  </div>
+   <div className="col"></div>
 
-  <div className="col"></div>
      </div>
 
-    
-
     );
 
-    
   }
 
-/*
-  render() {
-    const {
-      list,
-      WarningMessageOpen,
-      WarningMessageText
-    } = this.state;
-    return (
-      <main id="mainContent" className="container">
-        <div className="row">
-          <div className="col mt-5 p-0">
-            <h3>Contact Us</h3>
-          </div>
-          <div className="col-12 p-0">
-            <ListForm
-              onAddListItem={this.handleAddListItem}
-            />
-          </div>
-          {list.map(listItem => (
-            <ListItem
-              key={listItem._id}
-              listItem={listItem}
-              onDeleteListItem={this.handleDeleteListItem}
-            />
-          ))}
-          <WarningMessage
-            open={WarningMessageOpen}
-            text={WarningMessageText}
-            onWarningClose={this.handleWarningClose}
-          />
-        </div>
-      </main>
-    );
-  }
-
-  */
 }

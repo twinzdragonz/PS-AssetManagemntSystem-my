@@ -85,17 +85,15 @@ componentDidUpdate()
  {
    try{
  
-   if(this.state.username === null){
-     var user_info = await db.user_info.orderBy("id").reverse().limit(1).toArray();
-     this.setState({
-      username : user_info[0]['userName'],
-      password : user_info[0]['passWord'],
-      isAuthenticated : user_info[0]['isAuthenticated'],
-      token : user_info[0]['token']
-    });
-
-
-  }
+      if(this.state.username === null){
+        var user_info = await db.user_info.orderBy("id").reverse().limit(1).toArray();
+        this.setState({
+        username : user_info[0]['userName'],
+        password : user_info[0]['passWord'],
+        isAuthenticated : user_info[0]['isAuthenticated'],
+        token : user_info[0]['token']
+      });
+    }
   }catch(ex)
   {
     console.log(ex);
@@ -108,11 +106,10 @@ componentDidUpdate()
 
 
   render(){
-         
 
     console.log("IM ABOUT TO GRAB DATA");
     console.log("Current USERNAME : ",this.state.username);
- 
+
         let preAuthButton ;
         let Render_GetStarted;
         let Render_About ;
@@ -120,7 +117,7 @@ componentDidUpdate()
         let titleLink;
          // db return value of is this user authenticated
          // determined here
-         // 
+         //
          console.log("NAVBAR IM ABOUT TO GRAB DATA");
         if(!this.state.isAuthenticated)
         {
@@ -137,17 +134,17 @@ componentDidUpdate()
         }
         else
         {
-       
+
           preAuthButton = <Logout/>
           Render_GetStarted = null;
           Render_About =  null;
           Render_User =  <Link className="nav-item nav-link active" to=""> Username : {this.state.username} </Link> 
-          
+
           console.log("User logged in , rendered logout");
           titleLink = "/Dashboard";
-        
+
         }
-         
+
       return (
     <React.Fragment>
       <div className={styles.skipLink}>
@@ -157,18 +154,16 @@ componentDidUpdate()
         <Link className="navbar-brand" to={titleLink}>
           Policy Street Agent Portal
         </Link>
-      
+
         <div className="navbar-nav">
          {Render_User}
          {Render_GetStarted}
          {Render_About}
          {preAuthButton}
-     
+
 
         </div>
       </nav>
-
-     
     </React.Fragment>
 
    )  }

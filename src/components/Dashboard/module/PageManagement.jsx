@@ -10,12 +10,12 @@ export default class PageManagement extends Component{
 			<br></br>
 	   <Jumbotron>
 			<h1>Page Management!</h1>
-			<p>
-			This is a simple  unit, 
-			</p>
-			<p>
-			<Button variant="primary">Learn more</Button>
-			</p>
+				<p>
+				This is a simple  unit,
+				</p>
+				<p>
+				<Button variant="primary">Learn more</Button>
+				</p>
 			</Jumbotron>
 		</div>
 		)
