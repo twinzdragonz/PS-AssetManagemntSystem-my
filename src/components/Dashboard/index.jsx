@@ -26,10 +26,20 @@ export default class Dashboard extends Component {
 
     this.state = {
       currentDisplayTabIndex: 0,
-
-      username :null,
-      password : null,
+      username :  "",
+      password : "",
       token : null,
+      userIndex : null,
+      phoneNumber : null,
+      birthDate : null,
+      address : null,
+      postcode : null,
+      groupName : null,
+      databaseId : null,
+      salt : null,
+      groupId : null,
+      updatedAt : null,
+      createdAt : null,
       isAuthenticated : false,
 
       masterDetailText: [
@@ -68,16 +78,24 @@ export default class Dashboard extends Component {
   componentDidMount() {
     console.log("DASHBOARD NAME BEFORE :",this.state.username);
 
-      //this.dataFetch();
-
-
       try{
 
         this.setState({
           username :this.props.location.state.username,
           password : this.props.location.state.password,
           isAuthenticated : this.props.location.state.isAuthenticated,
-          token : this.props.location.state.token
+          token : this.props.location.state.token,
+          userIndex : this.props.location.state.userIndex,
+          phoneNumber : this.props.location.state.phoneNumber,
+          birthDate : this.props.location.state.birthDate,
+          address : this.props.location.state.address,
+          postcode : this.props.location.state.postcode,
+          groupName : this.props.location.state.groupName,
+          databaseId : this.props.location.state.databaseId,
+          salt : this.props.location.state.salt,
+          groupId : this.props.location.state.groupId,
+          updatedAt : this.props.location.state.updatedAt,
+          createdAt : this.props.location.state.createdAt
         });
         console.log("DASHBOARD NAME AFTER:",this.state.username);   
 

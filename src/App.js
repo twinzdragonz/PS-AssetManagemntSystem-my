@@ -18,6 +18,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <NavBar  {...this.props}/>
+
         <Switch>
           <Redirect exact path = "/" to = "/Homepage" />
           <Route path = "/Homepage" component = { Homepage } />
@@ -26,13 +27,10 @@ class App extends Component {
            <Route path = "/Dashboard"  render={(props) => <Dashboard {...props} /> }  />
 
            <Route component={NotFound} />
-        
         </Switch>
+
         <Footer />
-      </React.Fragment>   
-
-
-
+      </React.Fragment>
     );
   }
 }

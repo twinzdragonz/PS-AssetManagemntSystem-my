@@ -112,8 +112,7 @@ componentDidUpdate()
             this.setState({
               isAuthenticated:false
             });
-              
-              
+
               db.delete().then(() => {
                 console.log("Database successfully deleted");
                 }).catch((err) => {

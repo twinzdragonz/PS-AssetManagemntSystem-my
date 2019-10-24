@@ -12,34 +12,56 @@ export default class Profile extends Component{
 		  username :null,
 		  password : null,
 		  token : null,
+		  userIndex : null,
+		  phoneNumber : null,
+		  birthDate : null,
 		  address : null,
 		  postcode : null,
-		  phonenumber : null,
-		  group : null,
-		  companyid : null,
+		  groupName : null,
+		  databaseId : null,
+		  salt : null,
+		  groupId : null,
+		  updatedAt : null,
+		  createdAt : null,
 		  isAuthenticated : false,
 		};
 		this.handleWarningClose = this.handleWarningClose.bind(this);
 	  }
 
 handleWarningClose() {
-this.setState({
-	WarningMessageOpen: false,
-	WarningMessageText: ""
-});
+	this.setState({
+		WarningMessageOpen: false,
+		WarningMessageText: ""
+	});
 }
 
-
-componentDidMount()
+async componentDidMount()
 {
-	db.user_info.get(1,function(data) {
-		// preset to exist 
-		console.log("userName: " + data.userName + ".Token: " + data.token);
-		console.log("DATA LIST >>",data);
-		});
+	console.log("PROFILE COMPONENT DID MOUNT >>>>");
+	let data = await db.user_info.get(1);
+	console.log("PROFILE COMPONENT DID MOUNT >>>>",data);
+	this.setState({
+		user_id : data.databaseId,
+		username :data.userName,
+		password : "CLASSIFIED",
+		token : data.token,
+		userIndex : data.databaseId,
+		phoneNumber : data.phoneNumber,
+		birthDate : data.birthDate,
+		address : data.address,
+		postcode : data.postcode,
+		groupName : data.groupName,
+		databaseId : data.databaseId,
+		salt : data.salt,
+		groupId : data.groupId,
+		updatedAt : data.updatedAt,
+		createdAt : data.createdAt
+	});
+
 }
 
 	render() {
+
 		return(
 			<Modal.Dialog size="lg">
 			<Modal.Header >
@@ -52,7 +74,7 @@ componentDidMount()
 			 <td>:</td>
 			 <td>
 			<InputGroup className="mb-3">
-		<FormControl placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+		<FormControl value={this.state.username} placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
 						</InputGroup>
 							</td>
 							<td></td>
@@ -63,7 +85,7 @@ componentDidMount()
 				<td>:</td>
 				<td>
 					<InputGroup className="mb-3">
-						<FormControl placeholder= "Classified" aria-label="Classified" aria-describedby="basic-addon1" />
+						<FormControl value={this.state.password} placeholder= "Classified" aria-label="Classified" aria-describedby="basic-addon1" />
 					</InputGroup>
 							</td>
 						</tr>
@@ -72,7 +94,7 @@ componentDidMount()
 							<td>:</td>
 							<td>
 							<InputGroup className="mb-3">
-							<FormControl placeholder={this.state.group} aria-label="" aria-describedby="basic-addon1" />
+							<FormControl value={this.state.groupName} placeholder={this.state.group} aria-label="" aria-describedby="basic-addon1" />
 							</InputGroup>
 							</td>
 
@@ -84,7 +106,7 @@ componentDidMount()
 							<td>:</td>
 							<td>
 						<InputGroup className="mb-3">
-						<FormControl placeholder="" aria-label="" aria-describedby="basic-addon1" />
+						<FormControl value={this.state.phoneNumber} placeholder="" aria-label="" aria-describedby="basic-addon1" />
 						</InputGroup>
 							</td>
 						</tr>
@@ -93,7 +115,7 @@ componentDidMount()
 							<td>:</td>
 							<td>
 							<InputGroup className="mb-3">
-							<FormControl placeholder="" aria-label="" aria-describedby="basic-addon1" />
+							<FormControl value={this.state.birthDate} placeholder="" aria-label="" aria-describedby="basic-addon1" />
 							</InputGroup>
 							</td>
 
@@ -105,7 +127,7 @@ componentDidMount()
 							<td>:</td>
 							<td>
 						<InputGroup className="mb-3">
-						<FormControl placeholder="" aria-label="" aria-describedby="basic-addon1" />
+						<FormControl value={this.state.address} placeholder="" aria-label="" aria-describedby="basic-addon1" />
 						</InputGroup>
 							</td>
 						</tr>
@@ -114,7 +136,7 @@ componentDidMount()
 							<td>:</td>
 							<td>
 							<InputGroup className="mb-3">
-							<FormControl placeholder="" aria-label="" aria-describedby="basic-addon1" />
+							<FormControl  value={this.state.postcode} placeholder="" aria-label="" aria-describedby="basic-addon1" />
 							</InputGroup>
 							</td>
 							<td></td>
@@ -124,7 +146,7 @@ componentDidMount()
 							<td>:</td>
 							<td>
 						<InputGroup className="mb-3">
-						<FormControl placeholder="" aria-label="" aria-describedby="basic-addon1" />
+						<FormControl  value={this.state.userIndex} placeholder="" aria-label="" aria-describedby="basic-addon1" />
 						</InputGroup>
 							</td>
 						</tr>

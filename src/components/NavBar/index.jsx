@@ -49,27 +49,28 @@ componentWillReceiveProps()
   console.log("NAVBAR RELOAD", this.state.username);
   if(this.state.username === null)
   {
+    this.getUserInfo();
     window.location.reload();
   }
 }
 
-componentDidMount()
+async componentDidMount()
 {
   this.getUserInfo();
 }
 
-componentWillMount()
+async componentWillMount()
 {
   this.getUserInfo();
 }
 
-componentWillUpdate()
+async componentWillUpdate()
 {
   this.getUserInfo();
 
 }
 
-componentDidUpdate()
+async componentDidUpdate()
 {
   console.log("NAV BAR COMPONENT_DID_UPDATE",this.state.username);
   if(this.state.username === null)
@@ -87,6 +88,7 @@ componentDidUpdate()
  
       if(this.state.username === null){
         var user_info = await db.user_info.orderBy("id").reverse().limit(1).toArray();
+        console.log("USER INFO ON NAV >>>>",user_info);
         this.setState({
         username : user_info[0]['userName'],
         password : user_info[0]['passWord'],
@@ -104,8 +106,9 @@ componentDidUpdate()
 
 
 
-
   render(){
+
+        this.getUserInfo();
 
     console.log("IM ABOUT TO GRAB DATA");
     console.log("Current USERNAME : ",this.state.username);

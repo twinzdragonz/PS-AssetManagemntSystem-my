@@ -17,6 +17,19 @@ export default class Login extends Component {
         show : false,
         username : "",
         password : "",
+        token : null,
+        userIndex : null,
+        phoneNumber : null,
+        birthDate : null,
+        address : null,
+        postcode : null,
+        groupName : null,
+        databaseId : null,
+        salt : null,
+        groupId : null,
+        updatedAt : null,
+        createdAt : null,
+
         WarningMessageOpen: false,
         WarningMessageText: "",
         isAuthenticated : false
@@ -56,9 +69,27 @@ export default class Login extends Component {
         if(response.data.resp_code === "00")
           {
             console.log(response.data.resp_code);
+            console.log(response.data.resp_token);
+
             this.setState({
-              isAuthenticated:true
+                  isAuthenticated: true,
+                  username : response.data.resp_username,
+                  password : response.data.resp_password,
+                  token: response.data.resp_token,
+                  userIndex : response.data.resp_id,
+                  phoneNumber : response.data.resp_phone_number,
+                  birthDate : response.data.resp_birth_date,
+                  address : response.data.resp_address,
+                  postcode : response.data.resp_postcode,
+                  groupName : response.data.resp_group_name,
+                  databaseId : response.data.resp_id,
+                  salt : response.data.resp_salt,
+                  groupId : response.data.resp_group_id,
+                  updatedAt : response.data.resp_updatedAt,
+                  createdAt : response.data.resp_createdAt,
             });
+
+             console.log("CURRENT TOKEN >>>",this.state.token);
 
             var is_exist = false;
             console.log("USER_EXIST",is_exist);
@@ -68,8 +99,7 @@ export default class Login extends Component {
 
               is_exist = true;
               console.log("USER_EXIST",is_exist);
-              // preset to exist
-              console.log("userName: " + data.userName + ".Token: " + data.token);
+
 
         }).then(() => {
            // if not exist only add
@@ -78,14 +108,24 @@ export default class Login extends Component {
            {
               console.log("username is not exist, inserting now");
                 db.user_info.add({
-                      //userName,passWord,token,isAuthenticated,userIndex
                       userName : this.state.username,
                       passWord : this.state.password,
-                      token    : "TOKEN",
-                      isAuthenticated : this.state.isAuthenticated,
-                      userIndex : 1
+                      token    : this.state.token,
+                      isAuthenticated : true,
+                      userIndex : this.state.userIndex,
+                      phoneNumber : this.state.phoneNumber,
+                      birthDate : this.state.birthDate,
+                      address : this.state.address,
+                      postcode : this.state.postcode,
+                      groupName : this.state.groupName,
+                      databaseId : this.state.databaseId,
+                      salt : this.state.salt ,
+                      groupId : this.state.groupId,
+                      updatedAt : this.state.updatedAt,
+                      createdAt : this.state.createdAt
                 });
                 console.log("username inserted");
+
           }
         }).catch(function(error){
           console.log(error);
@@ -111,21 +151,23 @@ export default class Login extends Component {
 
 
      render() {
+      const redirectToReferrer = this.state.isAuthenticated;
+      if (redirectToReferrer === true) {
+        console.log("Server agree to Reroute to Dashboard");
+          return <Redirect to={{
+            pathname: '/Dashboard',
+            state: { username : this.state.username,
+                    password : this.state.password,
+                    token : this.state.token,
+                    isAuthenticated : this.state.isAuthenticated
 
-          const redirectToReferrer = this.state.isAuthenticated;
-          if (redirectToReferrer === true) {
-            console.log("Server agree to Reroute to Dashboard");
-              return <Redirect to={{
-                pathname: '/Dashboard',
-                state: { username : this.state.username,
-                        password : this.state.password,
-                        token : this.state.token,
-                        isAuthenticated : this.state.isAuthenticated }
-            }}
-    />
-          }
+                  }
+        }}
+/>
+  }
 
-      const handleClose = () => this.setState({
+    
+     const handleClose = () => this.setState({
         show : false
       })
       const handleShow = () => this.setState({
