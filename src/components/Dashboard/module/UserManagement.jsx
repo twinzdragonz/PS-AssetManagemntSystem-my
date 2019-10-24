@@ -80,12 +80,6 @@ export default class UserManagement extends Component{
 
 			},
 			{
-				name: 'Username',
-				selector: 'username',
-				sortable: false,
-
-			},
-			{
 				name: 'Authentication Token',
 				selector: 'token',
 				sortable: false,
@@ -111,7 +105,7 @@ export default class UserManagement extends Component{
 			},
 			{
 				name : 'Action',
-				cell: () => <Button size="sm" variant="info" onClick={this.handleAction}>Edit</Button>,
+				cell: () => <Button  size="sm" variant="info" onClick={this.handleAction}>Edit</Button>,
 				ignoreRowClick: true,
 				allowOverflow: true,
 				button: true,
